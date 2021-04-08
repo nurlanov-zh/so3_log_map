@@ -1,5 +1,7 @@
 # Analysis of logarithmic map in SO3
-The analysis and implementation of `SO3` `log` map, and its Jacobian (in a numerical sense). The special focus on edge cases, i.e. angle close `0` and `\pi`.
+The analysis and implementation of `SO3` `log` map, and its Jacobian (in a numerical sense). The special focus on edge cases, i.e. angles close `0` and `\pi`.
+For details see the pdf report: [Formulas](SO3_transformations.pdf).
+
 ## Contribution
 * Compared 3 different formulas of log map: `log_baseline`, `log_pi`, `log_quaternion` = `log_sophus` (see jupyter notebook for details).
 * Tested the above formulas of logarithmic mapping.
@@ -17,6 +19,7 @@ The analysis and implementation of `SO3` `log` map, and its Jacobian (in a numer
 * log map implementation adjusted for angle \pi `log_pi` gives correct results with precision up to 1e-8 max absolute difference. At angle exactly equal to \pi the log map is defined up to an overall sign.
 * log map implementation using intermediate quaternion representation (matrix -> quaternion -> angle/axis) `log_quaternion` gives correct results everywhere.
 * Sophus implementation of log map `log_sophus` gives correct results too. Internally it uses the "matrix to quaternion" conversion from Eigen library.
+
 ### Jacobians comparison
 1. Intermediate angles:
     1. All of the Jacobians give different results.
@@ -37,6 +40,7 @@ The analysis and implementation of `SO3` `log` map, and its Jacobian (in a numer
     4. `Quaternion` analytical - does not diverge, and continuously changes with decreasing angle. 
     5. `Quaternion` numerical - diverges at close (~discretization step) proximity of $\pi$ , when the angle crosses $\pi$. 
     6. All `numerical projected` help to avoid divergence. But they also diverge at close (~discretization step) proximity of $\pi$ , when the angle crosses $\pi$.
+
 ### Correctness of Jacobians using chain rule
 1. `Dx_log_x_quaternion` gives correct results everywhere (with high precision, < 1e-9 max abs diff).
 2. `Dx_log_x_pi` gives inaccurate results for angles close to 0. Also it nullifies rows corresponding to exact zero components of vector $n(i)=0$.
@@ -49,6 +53,8 @@ The analysis and implementation of `SO3` `log` map, and its Jacobian (in a numer
 1. The approximation up to precision $||x||^2$ (||x|| < 1e-1) works for all vectors, except the case when $\log(R \boxplus x)$ changes the sign of $\log(R)$
 
 ### Use case: ceres approximation
+1. Checked the correctness of derived analytical Jacobians comparing them against autodifferentiated Jacobians of corresponding extended log maps.
+2. Showed the issue with the baseline implementation of log map when optimizing pose-graph with large initial residuals (with angles close to \pi).
 
 ## Requirements
 Libraries used:
@@ -56,7 +62,7 @@ Libraries used:
 - Sophus (with python bindings)
 - PyCeres
 - jax
-- 
+
 ## References:
 
 * Lie theory, differential calculus on manifolds:
