@@ -1,6 +1,9 @@
-# Analysis of logarithmic map in SO3
-The analysis and implementation of `SO3` `log` map, and its Jacobian (in a numerical sense). The special focus on edge cases, i.e. angles close `0` and `\pi`.
-For details see the pdf report: [Formulas](SO3_transformations.pdf).
+# SO3 Lie group transformations and Jacobian of log map
+The analysis and implementation of `SO3` `log` map, and its Jacobian (in a numerical sense). The special focus on edge cases, i.e. angles close to $0$ and $\pi$.
+
+For details see the pdf report: [Report](SO3_transformations.pdf).
+
+Find corresponding [Sophus](https://github.com/strasdat/Sophus) PRs [here](https://github.com/strasdat/Sophus/pull/269) and [here](https://github.com/strasdat/Sophus/pull/281)
 
 ## Contribution
 * Compared 3 different formulas of log map: `log_baseline`, `log_pi`, `log_quaternion` = `log_sophus` (see jupyter notebook for details).
