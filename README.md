@@ -3,7 +3,9 @@ The analysis and implementation of `SO3` `log` map, and its Jacobian (in a numer
 
 For details see the pdf report: [Report](SO3_transformations.pdf).
 
-Find corresponding [Sophus](https://github.com/strasdat/Sophus) PRs [here](https://github.com/strasdat/Sophus/pull/269) and [here](https://github.com/strasdat/Sophus/pull/281) Resulting forum discussions: numerically stable formulas for matrix->quaternion->vector [(Edit2)](https://math.stackexchange.com/questions/83874/efficient-and-accurate-numerical-implementation-of-the-inverse-rodrigues-rotatio/110059#110059), chain-rule [Jacobians](https://math.stackexchange.com/questions/4101093/derivative-of-extended-logarithmic-map-in-so3-used-in-chain-rule).
+Find corresponding [Sophus](https://github.com/strasdat/Sophus) PRs [269](https://github.com/strasdat/Sophus/pull/269) and [281](https://github.com/strasdat/Sophus/pull/281), leading to merged [316](https://github.com/strasdat/Sophus/pull/316).
+
+Resulting forum discussions: numerically stable formulas for matrix->quaternion->vector [(Edit2)](https://math.stackexchange.com/questions/83874/efficient-and-accurate-numerical-implementation-of-the-inverse-rodrigues-rotatio/110059#110059), chain-rule of [Jacobians](https://math.stackexchange.com/questions/4101093/derivative-of-extended-logarithmic-map-in-so3-used-in-chain-rule).
 
 ## Contribution
 * Compared 3 different formulas of log map: `log_baseline`, `log_pi`, `log_quaternion` = `log_sophus` (see jupyter notebook for details).
